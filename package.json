@@ -1,0 +1,25 @@
+{
+	"name": "node-uptask",
+	"version": "1.0.0",
+	"description": "Proyecto UpTask con Node y MVC",
+	"main": "index.js",
+	"scripts": {
+		"start": "nodemon ./index.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/AranBeitia/NODE-upTask.git"
+	},
+	"author": "Arantza Beitia",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/AranBeitia/NODE-upTask/issues"
+	},
+	"homepage": "https://github.com/AranBeitia/NODE-upTask#readme",
+	"dependencies": {
+		"express": "^4.17.1"
+	},
+	"devDependencies": {
+		"nodemon": "^2.0.15"
+	}
+}
