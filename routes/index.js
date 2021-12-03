@@ -1,15 +1,10 @@
 const express = require('express')
 const router = express.Router()
+const controller = require('../controllers/controller')
 
 module.exports = function () {
-	/* rutas */
-	router.get('/', (request, response) => {
-		response.send('Index')
-	})
-
-	router.get('/nosotros', (request, response) => {
-		response.send('Nosotros')
-	})
+	router.get('/', controller.home)
+	router.get('/nosotros', controller.nosotros)
 
 	return router
 }
