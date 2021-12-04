@@ -1,3 +1,5 @@
+const Projects = require('../models/Projects')
+
 exports.home = (request, response) => {
 	response.render('index', {
 		pageName: 'Projects',
@@ -10,16 +12,16 @@ exports.projectForm = (request, response) => {
 	})
 }
 
-exports.newProject = (request, response) => {
+exports.newProject = async (request, response) => {
 	// response.send('enviaste el formulario')
 	// console.log(request.body) / { nombre: 'valor' }
 
 	// validar que tengamos algo en el input
-	const { nombre } = request.body
+	const { name } = request.body
 
 	let errors = []
 
-	if (!nombre) {
+	if (!name) {
 		errors.push({ texto: 'agregar un nombre al proyecto' })
 	}
 
@@ -32,5 +34,9 @@ exports.newProject = (request, response) => {
 	} else {
 		// no hay errores
 		// insertar en la BD.
+		const project = await Projects.create({ name })
+		// .then(() => console.log('Insertado exitosamente en la base de datos'))
+		// .catch((error) => console.log(error))
+		response.redirect('/')
 	}
 }
