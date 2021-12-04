@@ -3,5 +3,5 @@ exports.home = (request, response) => {
 }
 
 exports.nosotros = (request, response) => {
-	response.send('Nosotros')
+	response.render('nosotros')
 }
