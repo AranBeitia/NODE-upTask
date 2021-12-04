@@ -4,7 +4,8 @@ const controller = require('../controllers/controller')
 
 module.exports = function () {
 	router.get('/', controller.home)
-	router.get('/nosotros', controller.nosotros)
+	router.get('/new-project', controller.projectForm)
+	router.post('/new-project', controller.newProject)
 
 	return router
 }
