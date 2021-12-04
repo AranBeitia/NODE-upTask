@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const controller = require('../controllers/controller')
+const controller = require('../controllers/projectsController')
 /** importar express validator */
 const { body } = require('express-validator/check')
 
@@ -12,6 +12,8 @@ module.exports = function () {
 		body('name').not().isEmpty().trim().escape(),
 		controller.newProject
 	)
+	/** listar proyecto */
+	router.get('/projects/:url', controller.projectByUrl)
 
 	return router
 }
