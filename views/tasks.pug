@@ -4,7 +4,14 @@ block content
 	.contenido-principal
 		h1 #{pageName} - #{project.name}
 		//- pre= vardump(project)
-		//- TODO: form
+
+		form.agregar-tarea(action=`/projects/${project.url}` method="POST")
+			.campo 
+				label(for="task") Task: 
+				input.nombre-tarea(type="text" name="task" placeholder="Task name")
+			.campo.enviar 
+				input.boton.nueva-tarea(type="submit" value="Add")
+
 		//- TODO: pending list
 
 		//- actions

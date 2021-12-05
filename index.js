@@ -12,6 +12,7 @@ const { Result } = require('express-validator')
 
 /** importar el modelo */
 require('./models/Projects')
+require('./models/Tasks')
 
 db.sync()
 	.then(() => console.log('exito, conexion al servidor'))

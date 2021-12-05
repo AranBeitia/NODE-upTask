@@ -1,8 +1,12 @@
 const express = require('express')
 const router = express.Router()
-const controller = require('../controllers/projectsController')
+
 /** importar express validator */
 const { body } = require('express-validator/check')
+
+/** importar controladores */
+const controller = require('../controllers/projectsController')
+const tasksController = require('../controllers/tasksController')
 
 module.exports = function () {
 	router.get('/', controller.home)
@@ -27,6 +31,9 @@ module.exports = function () {
 
 	/** borrar proyecto */
 	router.delete('/projects/:url', controller.projectDelete)
+
+	/** tareas */
+	router.post('/projects/:url', tasksController.addTask)
 
 	return router
 }

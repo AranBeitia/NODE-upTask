@@ -7,11 +7,11 @@ const Projects = db.define(
 	'projects',
 	{
 		id: {
-			type: Sequelize.INTEGER,
+			type: Sequelize.INTEGER(11),
 			primaryKey: true,
 			autoIncrement: true,
 		},
-		name: Sequelize.STRING,
+		name: Sequelize.STRING(100),
 		url: Sequelize.STRING,
 	},
 	{
