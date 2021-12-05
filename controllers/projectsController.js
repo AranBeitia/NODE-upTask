@@ -45,12 +45,17 @@ exports.newProject = async (request, response) => {
 }
 
 exports.projectByUrl = async (request, response) => {
-	const projects = await Projects.findAll()
-	const project = await Projects.findOne({
+	const projectsPromise = Projects.findAll()
+	const projectPromise = Projects.findOne({
 		where: {
 			url: request.params.url,
 		},
 	})
+
+	const [projects, project] = await Promise.all([
+		projectsPromise,
+		projectPromise,
+	])
 
 	if (!project) return next()
 
@@ -62,15 +67,22 @@ exports.projectByUrl = async (request, response) => {
 }
 
 exports.projectEdit = async (request, response) => {
-	const projects = await Projects.findAll()
-	// const project = await Projects.findOne({
-	// 	where: {
-	// 		id: request.params.id,
-	// 	},
-	// })
+	const projectsPromise = Projects.findAll()
+
+	const projectPromise = Projects.findOne({
+		where: {
+			id: request.params.id,
+		},
+	})
+
+	const [projects, project] = await Promise.all([
+		projectsPromise,
+		projectPromise,
+	])
 
 	response.render('newProject', {
 		pageName: 'Edit project',
+		project,
 		projects,
 	})
 }
