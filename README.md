@@ -5,3 +5,10 @@
 # bases de datos
 - mysql / tableplus
 - orm: sequalize
+
+# webpack
+- babel loader
+- concurrently
+
+# ui
+- sweetalert
