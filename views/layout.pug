@@ -9,8 +9,8 @@ html(lang="en")
 		title #{pageName}
 	body 
 		header.barra 
-			h1 UpTask - Aministrador de proyectos 
-			a(href="#") Cerrar sesion 
+			h1 UpTask - Admin projects 
+			a(href="#") Close session
 		
 		main.contenedor 
 			aside.contenedor-proyectos
@@ -18,7 +18,7 @@ html(lang="en")
 					a(href="/new-project" class="boton") New project
 						span +
 				.panel.lista-proyectos
-					h2 Proyectos
+					h2 Projects
 					ul#proyectos.proyectos 
 						if(projects.length > 0)
 							each project in projects 

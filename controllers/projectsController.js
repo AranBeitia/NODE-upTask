@@ -26,7 +26,7 @@ exports.newProject = async (request, response) => {
 	let errors = []
 
 	if (!name) {
-		errors.push({ texto: 'agregar un nombre al proyecto' })
+		errors.push({ texto: 'add name of the project' })
 	}
 
 	// si hay errores
@@ -55,8 +55,22 @@ exports.projectByUrl = async (request, response) => {
 	if (!project) return next()
 
 	response.render('tasks', {
-		pageName: "Project's tasks",
+		pageName: 'Tasks project',
 		project,
+		projects,
+	})
+}
+
+exports.projectEdit = async (request, response) => {
+	const projects = await Projects.findAll()
+	// const project = await Projects.findOne({
+	// 	where: {
+	// 		id: request.params.id,
+	// 	},
+	// })
+
+	response.render('newProject', {
+		pageName: 'Edit project',
 		projects,
 	})
 }

@@ -15,5 +15,7 @@ module.exports = function () {
 	/** listar proyecto */
 	router.get('/projects/:url', controller.projectByUrl)
 
+	/** editar proyecto */
+	router.get('/project/edit/:id', controller.projectEdit)
 	return router
 }
