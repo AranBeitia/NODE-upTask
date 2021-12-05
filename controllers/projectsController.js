@@ -107,3 +107,14 @@ exports.projectUpdate = async (request, response) => {
 		response.redirect('/')
 	}
 }
+
+exports.projectDelete = async (request, response, next) => {
+	// request, query o params
+	// console.log(request.query)
+	const { projectUrl } = request.query
+	const result = await Projects.destroy({ where: { url: projectUrl } })
+
+	if (!result) next()
+
+	response.status(200).send('Your project has been deleted.')
+}

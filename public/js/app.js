@@ -1,1 +1,1 @@
-console.log('hello kitty')
+import projects from './modules/projects'

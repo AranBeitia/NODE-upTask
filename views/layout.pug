@@ -6,6 +6,7 @@ html(lang="en")
 		meta(name="viewport", content="width=device-width, initial-scale=1.0")
 		link(rel="stylesheet", href="/css/normalize.css")
 		link(rel="stylesheet", href="/css/app.css")
+		script(src="/dist/bundle.js" defer)
 		title #{pageName}
 	body 
 		header.barra 
@@ -27,3 +28,4 @@ html(lang="en")
 			block content
 
 			//- pre= vardump(projects)
+			
