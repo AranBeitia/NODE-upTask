@@ -39,7 +39,7 @@ exports.newProject = async (request, response) => {
 	} else {
 		// no hay errores
 		// insertar en la BD.
-		const project = await Projects.create({ name })
+		await Projects.create({ name })
 		response.redirect('/')
 	}
 }
@@ -85,4 +85,25 @@ exports.projectEdit = async (request, response) => {
 		project,
 		projects,
 	})
+}
+
+exports.projectUpdate = async (request, response) => {
+	const projects = await Projects.findAll()
+
+	const { name } = request.body
+	let errors = []
+	if (!name) {
+		errors.push({ texto: 'update project' })
+	}
+
+	if (errors.length > 0) {
+		response.render('newProject', {
+			pageName: 'Update project',
+			errors,
+			projects,
+		})
+	} else {
+		await Projects.update({ name: name }, { where: { id: request.params.id } })
+		response.redirect('/')
+	}
 }

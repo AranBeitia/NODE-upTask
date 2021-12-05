@@ -17,5 +17,13 @@ module.exports = function () {
 
 	/** editar proyecto */
 	router.get('/project/edit/:id', controller.projectEdit)
+
+	/** actualizar proyecto */
+	router.post(
+		'/new-project/:id',
+		body('name').not().isEmpty().trim().escape(),
+		controller.projectUpdate
+	)
+
 	return router
 }
