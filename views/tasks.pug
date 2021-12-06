@@ -26,9 +26,11 @@ block content
 								i.fas.fa-trash
 				else 
 					p There is no task for this project
-
-
-		//- actions
+		.avance
+			h2 Project progress 
+			#barra-avance.barra-avance 
+				#porcentaje.porcentaje
+				
 		.contenedor-acciones
 			a(href=`/project/edit/${project.id}` class="boton") Edit
 			button#eliminar-proyecto(type="button" data-project-url=project.url class="boton eliminar") Delete
