@@ -10,14 +10,14 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/AranBeitia/NODE-upTask.git"
+		"url": "git+https://github.com/AranBeitia/NODEJS-upTask.git"
 	},
 	"author": "Arantza Beitia",
 	"license": "ISC",
 	"bugs": {
-		"url": "https://github.com/AranBeitia/NODE-upTask/issues"
+		"url": "https://github.com/AranBeitia/NODEJS-upTask/issues"
 	},
-	"homepage": "https://github.com/AranBeitia/NODE-upTask#readme",
+	"homepage": "https://github.com/AranBeitia/NODEJS-upTask#readme",
 	"dependencies": {
 		"axios": "^0.24.0",
 		"concurrently": "^6.4.0",
