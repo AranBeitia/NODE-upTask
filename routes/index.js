@@ -5,32 +5,32 @@ const router = express.Router()
 const { body } = require('express-validator/check')
 
 /** importar controladores */
-const controller = require('../controllers/projectsController')
+const ProjectController = require('../controllers/projectsController')
 const tasksController = require('../controllers/tasksController')
 
 module.exports = function () {
-	router.get('/', controller.home)
-	router.get('/new-project', controller.projectForm)
+	router.get('/', ProjectController.home)
+	router.get('/new-project', ProjectController.projectForm)
 	router.post(
 		'/new-project',
 		body('name').not().isEmpty().trim().escape(),
-		controller.newProject
+		ProjectController.newProject
 	)
 	/** listar proyecto */
-	router.get('/projects/:url', controller.projectByUrl)
+	router.get('/projects/:url', ProjectController.projectByUrl)
 
 	/** editar proyecto */
-	router.get('/project/edit/:id', controller.projectEdit)
+	router.get('/project/edit/:id', ProjectController.projectEdit)
 
 	/** actualizar proyecto */
 	router.post(
 		'/new-project/:id',
 		body('name').not().isEmpty().trim().escape(),
-		controller.projectUpdate
+		ProjectController.projectUpdate
 	)
 
 	/** borrar proyecto */
-	router.delete('/projects/:url', controller.projectDelete)
+	router.delete('/projects/:url', ProjectController.projectDelete)
 
 	/** tareas */
 	router.post('/projects/:url', tasksController.addTask)
