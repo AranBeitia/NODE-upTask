@@ -19,3 +19,20 @@ exports.addTask = async (request, response, next) => {
 
 	response.redirect(`/projects/${request.params.url}`)
 }
+
+exports.changeStateTask = async (request, response) => {
+	const { id } = request.params
+	const task = await Tasks.findOne({ where: { id } })
+
+	/** cambiar estado */
+	let state = 0
+	if (task.state === state) {
+		state = 1
+	}
+	task.state = state
+
+	const result = await task.save()
+	if (!result) next()
+
+	response.status(200).send('Updated')
+}

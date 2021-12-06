@@ -35,5 +35,8 @@ module.exports = function () {
 	/** tareas */
 	router.post('/projects/:url', tasksController.addTask)
 
+	/** actualizar tarea */
+	router.patch('/tasks/:id', tasksController.changeStateTask)
+
 	return router
 }
