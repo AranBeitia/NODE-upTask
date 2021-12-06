@@ -36,3 +36,12 @@ exports.changeStateTask = async (request, response) => {
 
 	response.status(200).send('Updated')
 }
+
+exports.deleteTask = async (request, response, next) => {
+	const { id } = request.params
+	const result = await Tasks.destroy({ where: { id } })
+
+	if (!result) next()
+
+	response.status(200).send('Deleted kill kill bang bang')
+}

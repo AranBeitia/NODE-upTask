@@ -38,5 +38,8 @@ module.exports = function () {
 	/** actualizar tarea */
 	router.patch('/tasks/:id', tasksController.changeStateTask)
 
+	/** borrar tarea */
+	router.delete('/tasks/:id', tasksController.deleteTask)
+
 	return router
 }
