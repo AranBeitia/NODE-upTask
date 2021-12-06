@@ -1,5 +1,6 @@
 const { Result } = require('express-validator')
 const Projects = require('../models/Projects')
+const Tasks = require('../models/Tasks')
 
 exports.home = async (request, response) => {
 	const projects = await Projects.findAll()
@@ -57,12 +58,19 @@ exports.projectByUrl = async (request, response) => {
 		projectPromise,
 	])
 
+	// consulta tareas del proyecto actual
+	const tasks = await Tasks.findAll({
+		where: { projectId: project.id },
+		// include: [{ model: Projects }],  join en orm
+	})
+
 	if (!project) return next()
 
 	response.render('tasks', {
 		pageName: 'Tasks project',
 		project,
 		projects,
+		tasks,
 	})
 }
 
