@@ -1,0 +1,19 @@
+doctype html
+html(lang="en")
+	head
+		include partials/head
+	body.login
+		.contenedor-formulario 
+			h1 Create your account in UpTask 
+
+			form#formulario.caja.caja-login(method='POST' action='/create-account')
+				.campo 
+					label(for="email") E-mail: 
+					input(type="email" name="email" placeholder="Your email")
+				.campo 
+					label(for="password") Password: 
+					input(type="password" name="password" placeholder="Your password")
+				.campo.enviar
+					input.boton(type="submit" value="Create account")
+				.campo 
+					a(href="/start-session") Start session 

@@ -1,4 +1,3 @@
-const { noExtendRight } = require('sequelize/dist/lib/operators')
 const Projects = require('../models/Projects')
 const Tasks = require('../models/Tasks')
 
