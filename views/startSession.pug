@@ -4,7 +4,14 @@ html(lang="en")
 		include partials/head
 	body.login
 		.contenedor-formulario 
-			h1 Start session in UpTask 
+			h1 Start session in UpTask
+			
+			if locals.messages
+				.alertas
+				each category in Object.keys(locals.messages)
+					each error in messages[category]
+						.alerta(class=`${category}`)
+							p= error
 
 			form#formulario.caja.caja-login(method='POST' action='/start-session')
 				.campo 

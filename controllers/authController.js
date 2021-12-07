@@ -4,4 +4,5 @@ exports.authenticateUser = passport.authenticate('local', {
 	successRedirect: '/',
 	failureRedirect: '/start-session',
 	failureFlash: true,
+	badRequestMessage: 'Both fields are required',
 })
