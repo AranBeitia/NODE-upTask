@@ -33,3 +33,9 @@ exports.createAccount = async (request, response) => {
 		})
 	}
 }
+
+exports.restorePassword = (request, response) => {
+	response.render('restorePassword', {
+		pageName: 'Restore password',
+	})
+}

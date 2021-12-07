@@ -84,5 +84,9 @@ module.exports = function () {
 	/** close session */
 	router.get('/close-session', authController.closeSession)
 
+	/** restore password */
+	router.get('/restore-password', usersController.restorePassword)
+	router.post('/restore-password', authController.sendToken)
+
 	return router
 }

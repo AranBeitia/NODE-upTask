@@ -21,7 +21,6 @@ if (btnDelete) {
 				axios
 					.delete(url, { params: { projectUrl } })
 					.then((response) => {
-						console.log(response)
 						Swal.fire('Deleted!', response.data, 'success')
 						setTimeout(() => {
 							window.location.href = '/'

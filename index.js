@@ -66,7 +66,6 @@ app.use((request, response, next) => {
 	response.locals.vardump = helpers.vardump
 	response.locals.messages = request.flash()
 	response.locals.user = { ...request.user } || null
-	console.log(response.locals.user)
 	next()
 })
 /** middleware 2 */
