@@ -16,3 +16,9 @@ exports.userAuthenticated = (request, response, next) => {
 	// si no autenticado, redirigir al formulario
 	return response.redirect('/start-session')
 }
+
+exports.closeSession = (request, response) => {
+	request.session.destroy(() => {
+		response.redirect('/start-session')
+	})
+}
