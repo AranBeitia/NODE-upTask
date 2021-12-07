@@ -6,6 +6,10 @@ html(lang="en")
 		.contenedor-formulario 
 			h1 Create your account in UpTask 
 
+			if errors 
+				each error in errors
+					p.error.alert= error.message
+
 			form#formulario.caja.caja-login(method='POST' action='/create-account')
 				.campo 
 					label(for="email") E-mail: 

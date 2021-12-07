@@ -16,15 +16,15 @@ const Users = db.define(
 			allowNull: false,
 			validate: {
 				isEmail: {
-					msg: 'Agrega un Correo Válido',
+					msg: 'Add a valid email',
 				},
 				notEmpty: {
-					msg: 'El e-mail no puede ir vacio',
+					msg: "E-mail can't be empty",
 				},
 			},
 			unique: {
 				args: true,
-				msg: 'Usuario Ya Registrado',
+				msg: 'User already registered',
 			},
 		},
 		password: {

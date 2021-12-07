@@ -1,17 +1,26 @@
 const Users = require('../models/Users')
 
-exports.createAccount = (request, response) => {
+exports.createAccountForm = (request, response) => {
 	response.render('createAccount', {
-		pageName: 'Create account in UpTask',
+		pageName: 'Create account',
 	})
 }
 
-exports.addAccount = (request, response) => {
+exports.createAccount = async (request, response) => {
 	// leer datos
 	const { email, password } = request.body
-	// crear usuario
-	Users.create({
-		email,
-		password,
-	}).then(() => response.redirect('/start-session'))
+
+	try {
+		// crear usuario
+		await Users.create({
+			email,
+			password,
+		})
+		response.redirect('/start-session')
+	} catch (error) {
+		const errors = error.errors
+		response.render('createAccount', {
+			pageName: 'Create account',
+		})
+	}
 }
