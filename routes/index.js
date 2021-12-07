@@ -11,37 +11,67 @@ const usersController = require('../controllers/usersController')
 const authController = require('../controllers/authController')
 
 module.exports = function () {
-	router.get('/', ProjectController.home)
-	router.get('/new-project', ProjectController.projectForm)
+	router.get('/', authController.userAuthenticated, ProjectController.home)
+	router.get(
+		'/new-project',
+		authController.userAuthenticated,
+		ProjectController.projectForm
+	)
 	router.post(
 		'/new-project',
+		authController.userAuthenticated,
 		body('name').not().isEmpty().trim().escape(),
 		ProjectController.newProject
 	)
 	/** listar proyecto */
-	router.get('/projects/:url', ProjectController.projectByUrl)
+	router.get(
+		'/projects/:url',
+		authController.userAuthenticated,
+		ProjectController.projectByUrl
+	)
 
 	/** editar proyecto */
-	router.get('/project/edit/:id', ProjectController.projectEdit)
+	router.get(
+		'/project/edit/:id',
+		authController.userAuthenticated,
+		ProjectController.projectEdit
+	)
 
 	/** actualizar proyecto */
 	router.post(
 		'/new-project/:id',
+		authController.userAuthenticated,
 		body('name').not().isEmpty().trim().escape(),
 		ProjectController.projectUpdate
 	)
 
 	/** borrar proyecto */
-	router.delete('/projects/:url', ProjectController.projectDelete)
+	router.delete(
+		'/projects/:url',
+		authController.userAuthenticated,
+		ProjectController.projectDelete
+	)
 
 	/** tareas */
-	router.post('/projects/:url', tasksController.addTask)
+	router.post(
+		'/projects/:url',
+		authController.userAuthenticated,
+		tasksController.addTask
+	)
 
 	/** actualizar tarea */
-	router.patch('/tasks/:id', tasksController.changeStateTask)
+	router.patch(
+		'/tasks/:id',
+		authController.userAuthenticated,
+		tasksController.changeStateTask
+	)
 
 	/** borrar tarea */
-	router.delete('/tasks/:id', tasksController.deleteTask)
+	router.delete(
+		'/tasks/:id',
+		authController.userAuthenticated,
+		tasksController.deleteTask
+	)
 
 	/** crear nueva cuenta */
 	router.get('/create-account', usersController.createAccountForm)
