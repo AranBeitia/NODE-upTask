@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 
 /** importar express validator */
-const { body } = require('express-validator/check')
+const { body } = require('express-validator')
 
 /** importar controladores */
 const ProjectController = require('../controllers/projectsController')
@@ -45,6 +45,9 @@ module.exports = function () {
 	/** crear nueva cuenta */
 	router.get('/create-account', usersController.createAccountForm)
 	router.post('/create-account', usersController.createAccount)
+
+	/** start session */
+	router.get('/start-session', usersController.startSessionForm)
 
 	return router
 }

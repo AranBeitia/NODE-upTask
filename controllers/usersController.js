@@ -6,6 +6,12 @@ exports.createAccountForm = (request, response) => {
 	})
 }
 
+exports.startSessionForm = (request, response) => {
+	response.render('startSession', {
+		pageName: 'Start session',
+	})
+}
+
 exports.createAccount = async (request, response) => {
 	// leer datos
 	const { email, password } = request.body

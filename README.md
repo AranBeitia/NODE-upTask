@@ -12,3 +12,6 @@
 
 # ui
 - sweetalert
+
+# auth
+- passport
