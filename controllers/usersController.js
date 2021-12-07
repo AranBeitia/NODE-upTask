@@ -6,11 +6,23 @@ exports.createAccountForm = (request, response) => {
 	})
 }
 
-exports.createAccount = (request, response) => {
+exports.createAccount = async (request, response) => {
 	// leer datos
 	const { email, password } = request.body
 	// crear usuario
-	Users.create({ email, password }).then(() =>
+	try {
+		await Users.create({ email, password })
 		response.redirect('/start-session')
-	)
+	} catch (error) {
+		request.flash(
+			'error',
+			error.errors.map((error) => error.message)
+		)
+		response.render('createAccount', {
+			messages: request.flash(),
+			pageName: 'Create account',
+			email: email,
+			password: password,
+		})
+	}
 }

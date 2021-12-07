@@ -6,17 +6,20 @@ html(lang="en")
 		.contenedor-formulario 
 			h1 Create your account in UpTask 
 
-			if errors 
-				each error in errors
-					p.error.alert= error.message
+			if locals.messages
+				.alertas
+				each category in Object.keys(locals.messages)
+					each error in messages[category]
+						.alerta(class=`${category}`)
+							p= error
 
 			form#formulario.caja.caja-login(method='POST' action='/create-account')
 				.campo 
 					label(for="email") E-mail: 
-					input(type="email" name="email" placeholder="Your email" required)
+					input(type="email" name="email" placeholder="Your email" value= email)
 				.campo 
 					label(for="password") Password: 
-					input(type="password" name="password" placeholder="Your password" required)
+					input(type="password" name="password" placeholder="Your password" value= password)
 				.campo.enviar
 					input.boton(type="submit" value="Create account")
 				.campo 
