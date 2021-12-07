@@ -19,7 +19,7 @@ const Users = db.define(
 					msg: 'Add a valid email',
 				},
 				notEmpty: {
-					msg: 'Email can not be empty',
+					msg: 'Email cant be empty',
 				},
 			},
 			unique: {
@@ -32,7 +32,7 @@ const Users = db.define(
 			allowNull: false,
 			validate: {
 				notEmpty: {
-					msg: 'Password can not be empty',
+					msg: 'Password cant be empty',
 				},
 			},
 		},
