@@ -9,6 +9,7 @@ exports.createAccountForm = (request, response) => {
 exports.startSessionForm = (request, response) => {
 	response.render('startSession', {
 		pageName: 'Start session',
+		error: response.locals.messages,
 	})
 }
 

@@ -57,8 +57,8 @@ app.use(
 	})
 )
 
-// app.use(passport.initialize)
-// app.use(passport.session())
+app.use(passport.initialize())
+app.use(passport.session())
 
 /** pasar vardump a la aplicacion */
 /** middleware 1 */
