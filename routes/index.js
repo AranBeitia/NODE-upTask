@@ -7,6 +7,7 @@ const { body } = require('express-validator/check')
 /** importar controladores */
 const ProjectController = require('../controllers/projectsController')
 const tasksController = require('../controllers/tasksController')
+const usersController = require('../controllers/usersController')
 
 module.exports = function () {
 	router.get('/', ProjectController.home)
@@ -40,6 +41,9 @@ module.exports = function () {
 
 	/** borrar tarea */
 	router.delete('/tasks/:id', tasksController.deleteTask)
+
+	/** crear nueva cuenta */
+	router.get('/create-account', usersController.createAccountForm)
 
 	return router
 }
