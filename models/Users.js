@@ -19,7 +19,7 @@ const Users = db.define(
 					msg: 'Add a valid email',
 				},
 				notEmpty: {
-					msg: "E-mail can't be empty",
+					msg: 'Email can not be empty',
 				},
 			},
 			unique: {
@@ -32,7 +32,7 @@ const Users = db.define(
 			allowNull: false,
 			validate: {
 				notEmpty: {
-					msg: "Password can't be empty",
+					msg: 'Password can not be empty',
 				},
 			},
 		},
@@ -46,6 +46,6 @@ const Users = db.define(
 	}
 )
 
-Users.hasMany(Projects)
+// Users.hasMany(Projects)
 
 module.exports = Users

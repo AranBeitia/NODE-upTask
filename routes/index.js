@@ -43,8 +43,8 @@ module.exports = function () {
 	router.delete('/tasks/:id', tasksController.deleteTask)
 
 	/** crear nueva cuenta */
-	// router.get('/create-account', usersController.createAccountForm)
-	// router.post('/create-account', usersController.createAccount)
+	router.get('/create-account', usersController.createAccountForm)
+	router.post('/create-account', usersController.createAccount)
 
 	return router
 }
