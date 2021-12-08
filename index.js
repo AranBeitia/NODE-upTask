@@ -7,6 +7,8 @@ const flash = require('connect-flash')
 const session = require('express-session')
 const cookieParser = require('cookie-parser')
 const passport = require('./config/passport')
+// importar variables
+require('dotenv').config({ path: 'variables.env' })
 
 /** helpers con algunas funciones */
 const helpers = require('./helpers')
@@ -76,6 +78,13 @@ app.use((request, response, next) => {
 
 app.use('/', routes())
 
-app.listen(3000)
+// servidor y puerto
+const host = process.env.HOST || '0.0.0.0'
+const port = process.env.PORT || 3000
+
+app.listen(port, host, () => {
+	console.log('server is connected')
+})
+// app.listen(3000)
 
 // require('./handlers/email') --> ejecuta el envio de email al npm start
