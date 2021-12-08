@@ -77,3 +77,5 @@ app.use((request, response, next) => {
 app.use('/', routes())
 
 app.listen(3000)
+
+// require('./handlers/email') --> ejecuta el envio de email al npm start

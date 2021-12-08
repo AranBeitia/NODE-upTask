@@ -15,3 +15,11 @@
 
 # auth
 - passport
+
+# mailing
+- nodemailer 
+- juice 
+- html-to-text 
+
+- mailtrap: https://mailtrap.io/
+- nodemailer: https://nodemailer.com/
