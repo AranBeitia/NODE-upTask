@@ -1,6 +1,9 @@
 const passport = require('passport')
 const Users = require('../models/Users')
+const { Sequelize } = require('sequelize/dist')
+const Op = Sequelize.Op
 const crypto = require('crypto')
+const bcrypt = require('bcrypt-nodejs')
 
 exports.authenticateUser = passport.authenticate('local', {
 	successRedirect: '/',
@@ -49,7 +52,7 @@ exports.sendToken = async (request, response) => {
 	const resetUrl = `http://${request.headers.host}/restore-password/${user.token}`
 }
 
-exports.resetPassword = async (request, response) => {
+exports.validateToken = async (request, response) => {
 	const user = await Users.findOne({
 		where: {
 			token: request.params.token,
@@ -66,4 +69,31 @@ exports.resetPassword = async (request, response) => {
 	response.render('resetPassword', {
 		pageName: 'Reset password',
 	})
+}
+
+exports.resetPassword = async (request, response) => {
+	const user = await Users.findOne({
+		where: {
+			token: request.params.token,
+			expiration: {
+				[Op.gte]: Date.now(),
+			},
+		},
+	})
+
+	if (!user) {
+		request.flash('error', 'error, time expired')
+		response.redirect('/restore-password')
+	}
+
+	// reset, hash de password y borrado de token
+	user.password = bcrypt.hashSync(request.body.password, bcrypt.genSaltSync(10))
+	user.token = null
+	user.expiration = null
+
+	// guardar nuevo password
+	await user.save()
+
+	request.flash('correcto', 'your password has changed correctly')
+	response.redirect('/start-session')
 }
