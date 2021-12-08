@@ -39,7 +39,31 @@ exports.sendToken = async (request, response) => {
 	}
 
 	// si usuario existe
-	const token = crypto.randomBytes(20).toString('hex')
-	const expiration = Date.now() + 3600000
-	console.log(token)
+	user.token = crypto.randomBytes(20).toString('hex')
+	user.expiration = Date.now() + 3600000
+
+	// guardar en base de datos
+	await user.save()
+
+	// url del reset
+	const resetUrl = `http://${request.headers.host}/restore-password/${user.token}`
+}
+
+exports.resetPassword = async (request, response) => {
+	const user = await Users.findOne({
+		where: {
+			token: request.params.token,
+		},
+	})
+
+	// si no encuentra usuario
+	if (!user) {
+		request.flash('error', 'Not valid')
+		response.redirect('/restore-password')
+	}
+
+	// formulario para generar password
+	response.render('resetPassword', {
+		pageName: 'Reset password',
+	})
 }

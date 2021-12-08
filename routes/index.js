@@ -87,6 +87,7 @@ module.exports = function () {
 	/** restore password */
 	router.get('/restore-password', usersController.restorePassword)
 	router.post('/restore-password', authController.sendToken)
+	router.get('/restore-password/:token', authController.resetPassword)
 
 	return router
 }
