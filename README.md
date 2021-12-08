@@ -26,3 +26,7 @@
 
 # CI/CD
 - dotenv
+
+# deploy
+- heroku: https://id.heroku.com/login
+- git push production main // despues de pushear a github, para que despliegue en heroku
