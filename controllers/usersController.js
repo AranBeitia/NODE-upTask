@@ -1,4 +1,5 @@
 const Users = require('../models/Users')
+const sendEmail = require('../handlers/email')
 
 exports.createAccountForm = (request, response) => {
 	response.render('createAccount', {
@@ -19,6 +20,23 @@ exports.createAccount = async (request, response) => {
 	// crear usuario
 	try {
 		await Users.create({ email, password })
+
+		// crear url de confirmacion
+		const confirmUrl = `http://${request.headers.host}/confirm/${email}`
+
+		// crear objeto de usuario
+		const user = { email }
+
+		// enviar email
+		await sendEmail.send({
+			user,
+			subject: 'Confirm account',
+			confirmUrl,
+			archive: 'confirm-account',
+		})
+
+		// redirigir al usuario
+		request.flash('correcto', 'We sent an email, confirm your account')
 		response.redirect('/start-session')
 	} catch (error) {
 		request.flash(
